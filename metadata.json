@@ -1,0 +1,6 @@
+{
+  "name": "Blood Bank Management System",
+  "description": "DCDS Lab ESE Mini-Project for Symbiosis Institute of Technology Pune - Blood Bank Management System with Donor, Donation, Inventory, Hospital Requests, Analytics, Screening logs, and Audit logs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
