@@ -135,7 +135,7 @@ CREATE TABLE request_allocations (
     UNIQUE KEY uk_request_unit (request_id, unit_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 8. Screening Logs Table (MySQL replacement for MongoDB screening logs)
+-- 8. Screening Logs Table
 CREATE TABLE screening_logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     donor_code VARCHAR(20) NOT NULL,
@@ -149,7 +149,7 @@ CREATE TABLE screening_logs (
     logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- 9. Audit Logs Table (MySQL replacement for MongoDB audit logs)
+-- 9. Audit Logs Table
 CREATE TABLE audit_logs (
     audit_id INT AUTO_INCREMENT PRIMARY KEY,
     user_name VARCHAR(100) NOT NULL,
@@ -159,11 +159,8 @@ CREATE TABLE audit_logs (
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
 -- =========================================================================
--- SEED DATA WITH REQUESTED NAMES
--- Admin: Bivek sah
--- Donors/Staff: Rahul, Nitin Kumar, Saurav paudel, Muthmari, Alok yadav, Ayush karn
+-- SEED DATA
 -- =========================================================================
 
 -- 1. Admin Users
@@ -171,7 +168,7 @@ INSERT INTO admin_users (username, password_hash, full_name, email, role) VALUES
 ('bivek', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'Bivek sah', 'bivek.sah@sitpune.edu.in', 'SUPER_ADMIN'),
 ('nitin', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'Nitin Kumar', 'nitin.kumar@sitpune.edu.in', 'STAFF');
 
--- 2. Donors (Using requested names: Rahul, Saurav paudel, Muthmari, Alok yadav, Ayush karn)
+-- 2. Donors
 INSERT INTO donors (donor_code, full_name, age, gender, blood_group, phone, email, city, address, last_donation_date, consent_for_contact, is_eligible) VALUES
 ('DNR-1001', 'Rahul', 26, 'Male', 'O+', '+919822012345', 'rahul@example.com', 'Pune', 'Kothrud, Pune - 411038', '2026-01-15', TRUE, TRUE),
 ('DNR-1002', 'Saurav paudel', 25, 'Male', 'A+', '+919855023456', 'saurav.p@example.com', 'Pune', 'Shivajinagar, Pune - 411005', '2025-11-20', TRUE, TRUE),
@@ -215,14 +212,121 @@ INSERT INTO request_allocations (request_id, unit_id, allocated_by) VALUES
 (2, 3, 'Bivek sah'),
 (3, 4, 'Nitin Kumar');
 
--- 8. Screening Logs
-INSERT INTO screening_logs (donor_code, donation_code, hemoglobin, bp, pulse, weight_kg, screening_result, notes) VALUES
-('DNR-1001', 'DON-501', 14.2, '120/80', 76, 68, 'APPROVED', 'All parameters normal'),
-('DNR-1002', 'DON-502', 13.5, '118/78', 72, 65, 'APPROVED', 'Fit for donation'),
-('DNR-1006', 'DON-506', 11.0, '110/70', 80, 54, 'DEFERRED', 'Low hemoglobin count');
 
--- 9. Audit Logs
+-- =========================================================================
+-- ADDITIONAL SAMPLE DATA
+-- Existing tables, columns, relationships, and original records are unchanged.
+-- The records below extend the sample dataset for testing and screenshots.
+-- =========================================================================
+
+-- Additional Admin Users
+INSERT INTO admin_users (username, password_hash, full_name, email, role) VALUES
+('staff_pune', '7ac4fca0787ec431e7130624246714365df80a48ca087e2a2355897ff5ebfd10', 'Pune Blood Bank Staff', 'staff.pune@example.com', 'STAFF'),
+('viewer_audit', 'dcf899db2a9ef071f8af6e8a2d788e343cac23bdab10131d347391a92ee0b058', 'Audit Viewer', 'viewer.audit@example.com', 'VIEWER'),
+('staff_inventory', '4ed747f5068bf198f582ec88cda31df7af1a8a4d8b23f3144fdd3375c1351a43', 'Inventory Staff', 'inventory.staff@example.com', 'STAFF');
+
+-- Additional Donors (donor_id values 7-16)
+INSERT INTO donors
+(donor_id, donor_code, full_name, age, gender, blood_group, phone, email, city, address, last_donation_date, consent_for_contact, is_eligible)
+VALUES
+(7, 'DNR-1007', 'Anjali Patil', 23, 'Female', 'A+', '+919876100007', 'anjali.patil@example.com', 'Pune', 'Aundh, Pune - 411007', '2026-05-10', TRUE, TRUE),
+(8, 'DNR-1008', 'Rohan Deshmukh', 31, 'Male', 'O+', '+919876100008', 'rohan.d@example.com', 'Pune', 'Wakad, Pune - 411057', '2026-04-18', TRUE, TRUE),
+(9, 'DNR-1009', 'Sneha Joshi', 22, 'Female', 'B+', '+919876100009', 'sneha.j@example.com', 'Mumbai', 'Powai, Mumbai - 400076', NULL, TRUE, TRUE),
+(10, 'DNR-1010', 'Vikram Thapa', 27, 'Male', 'O-', '+919876100010', 'vikram.t@example.com', 'Pune', 'Kharadi, Pune - 411014', '2026-03-21', TRUE, TRUE),
+(11, 'DNR-1011', 'Meera Kulkarni', 35, 'Female', 'AB+', '+919876100011', 'meera.k@example.com', 'Nashik', 'College Road, Nashik - 422005', '2025-12-12', TRUE, TRUE),
+(12, 'DNR-1012', 'Arjun Shrestha', 29, 'Male', 'A-', '+919876100012', 'arjun.s@example.com', 'Pune', 'Pimple Saudagar, Pune - 411027', NULL, TRUE, TRUE),
+(13, 'DNR-1013', 'Pooja More', 26, 'Female', 'B-', '+919876100013', 'pooja.more@example.com', 'Mumbai', 'Borivali, Mumbai - 400092', '2026-02-14', TRUE, TRUE),
+(14, 'DNR-1014', 'Kunal Shah', 40, 'Male', 'AB-', '+919876100014', 'kunal.shah@example.com', 'Pune', 'Kondhwa, Pune - 411048', NULL, TRUE, TRUE),
+(15, 'DNR-1015', 'Divya Nair', 24, 'Female', 'O+', '+919876100015', 'divya.nair@example.com', 'Nashik', 'Gangapur Road, Nashik - 422013', '2026-06-05', TRUE, TRUE),
+(16, 'DNR-1016', 'Sanjay Yadav', 33, 'Male', 'A+', '+919876100016', 'sanjay.y@example.com', 'Pune', 'Dhanori, Pune - 411015', NULL, TRUE, FALSE);
+
+-- Additional Donations (donation_id values 7-16)
+INSERT INTO donations
+(donation_id, donation_code, donor_id, donation_date, quantity_ml, screening_status, deferral_reason, collected_by, notes)
+VALUES
+(7, 'DON-507', 7, '2026-05-10', 350, 'APPROVED', NULL, 'Nitin Kumar', 'Routine donation; screening approved'),
+(8, 'DON-508', 8, '2026-04-18', 400, 'APPROVED', NULL, 'Bivek sah', 'Donor vitals recorded as normal'),
+(9, 'DON-509', 9, '2026-10-02', 350, 'APPROVED', NULL, 'Nitin Kumar', 'First recorded donation'),
+(10, 'DON-510', 10, '2026-03-21', 350, 'APPROVED', NULL, 'Bivek sah', 'O-negative donation'),
+(11, 'DON-511', 11, '2025-12-12', 450, 'APPROVED', NULL, 'Nitin Kumar', 'Donation completed successfully'),
+(12, 'DON-512', 12, '2026-10-12', 350, 'PENDING', NULL, 'Bivek sah', 'Awaiting final screening review'),
+(13, 'DON-513', 13, '2026-02-14', 350, 'APPROVED', NULL, 'Nitin Kumar', 'Donation approved after screening'),
+(14, 'DON-514', 14, '2026-10-20', 350, 'PENDING', NULL, 'Bivek sah', 'Screening review pending'),
+(15, 'DON-515', 15, '2026-06-05', 400, 'APPROVED', NULL, 'Nitin Kumar', 'Donation completed successfully'),
+(16, 'DON-516', 16, '2026-10-22', 350, 'DEFERRED', 'Eligibility review required', 'Bivek sah', 'Donation deferred after preliminary screening');
+
+-- Additional Blood Units (unit_id values 6-15)
+INSERT INTO blood_units
+(unit_id, unit_code, donation_id, blood_group, component_type, collection_date, expiry_date, status, storage_location)
+VALUES
+(6, 'UNT-906', 7, 'A+', 'Packed RBC', '2026-05-10', '2026-11-06', 'AVAILABLE', 'Cold Storage Unit A-2'),
+(7, 'UNT-907', 8, 'O+', 'Whole Blood', '2026-04-18', '2026-05-18', 'EXPIRED', 'Disposal Box C'),
+(8, 'UNT-908', 9, 'B+', 'Platelets', '2026-10-02', '2026-10-09', 'EXPIRED', 'Disposal Box C'),
+(9, 'UNT-909', 10, 'O-', 'Packed RBC', '2026-03-21', '2026-09-18', 'EXPIRED', 'Disposal Box B'),
+(10, 'UNT-910', 11, 'AB+', 'Plasma', '2025-12-12', '2027-12-12', 'AVAILABLE', 'Deep Freezer F-4'),
+(11, 'UNT-911', 12, 'A-', 'Whole Blood', '2026-10-12', '2026-11-11', 'QUARANTINED', 'Quarantine Refrigerator Q-1'),
+(12, 'UNT-912', 13, 'B-', 'Packed RBC', '2026-02-14', '2026-08-14', 'EXPIRED', 'Disposal Box D'),
+(13, 'UNT-913', 14, 'AB-', 'Plasma', '2026-10-20', '2028-10-20', 'QUARANTINED', 'Deep Freezer F-5'),
+(14, 'UNT-914', 15, 'O+', 'Platelets', '2026-06-05', '2026-06-12', 'EXPIRED', 'Disposal Box C'),
+(15, 'UNT-915', 16, 'A+', 'Whole Blood', '2026-10-22', '2026-11-21', 'QUARANTINED', 'Quarantine Refrigerator Q-2');
+
+-- Additional Hospitals (hospital_id values 4-10)
+INSERT INTO hospitals
+(hospital_id, hospital_code, hospital_name, contact_person, phone, email, city, address)
+VALUES
+(4, 'HSP-304', 'Deenanath Mangeshkar Hospital', 'Dr. Kavita Rao', '+912040100100', 'bloodbank@example.com', 'Pune', 'Erandwane, Pune - 411004'),
+(5, 'HSP-305', 'Sahyadri Hospital', 'Dr. Amit Kulkarni', '+912067200200', 'transfusion@example.com', 'Pune', 'Deccan Gymkhana, Pune - 411004'),
+(6, 'HSP-306', 'KEM Hospital', 'Dr. R. Desai', '+912224100300', 'blooddesk@example.com', 'Mumbai', 'Parel, Mumbai - 400012'),
+(7, 'HSP-307', 'Nanavati Max Hospital', 'Dr. Neha Shah', '+912226200400', 'bloodservices@example.com', 'Mumbai', 'Vile Parle, Mumbai - 400056'),
+(8, 'HSP-308', 'Civil Hospital Nashik', 'Dr. S. Patil', '+912532500500', 'bloodbank.nashik@example.com', 'Nashik', 'Trimbak Road, Nashik - 422002'),
+(9, 'HSP-309', 'Aditya Birla Memorial Hospital', 'Dr. P. Nair', '+912067700600', 'transfusion.pune@example.com', 'Pune', 'Thergaon, Pune - 411033'),
+(10, 'HSP-310', 'Jupiter Hospital', 'Dr. M. Joshi', '+912267300700', 'blooddesk.thane@example.com', 'Thane', 'Eastern Express Highway, Thane - 400601');
+
+-- Additional Blood Requests (request_id values 4-10)
+INSERT INTO blood_requests
+(request_id, request_code, hospital_id, blood_group, component_type, quantity_requested, quantity_allocated, priority, request_status, required_by_date, approved_by, notes)
+VALUES
+(4, 'REQ-704', 4, 'A+', 'Packed RBC', 2, 1, 'URGENT', 'PARTIALLY_FULFILLED', '2026-11-02', 'Bivek sah', 'Surgery support request'),
+(5, 'REQ-705', 5, 'O-', 'Packed RBC', 1, 0, 'EMERGENCY', 'PENDING', '2026-10-30', NULL, 'Emergency request awaiting allocation'),
+(6, 'REQ-706', 6, 'B+', 'Platelets', 4, 0, 'URGENT', 'PENDING', '2026-11-01', NULL, 'Platelet support requested'),
+(7, 'REQ-707', 7, 'AB+', 'Plasma', 2, 1, 'ROUTINE', 'PARTIALLY_FULFILLED', '2026-11-08', 'Nitin Kumar', 'Plasma request'),
+(8, 'REQ-708', 8, 'A-', 'Whole Blood', 2, 0, 'URGENT', 'PENDING', '2026-11-03', NULL, 'Awaiting compatible units'),
+(9, 'REQ-709', 9, 'B-', 'Packed RBC', 3, 0, 'EMERGENCY', 'PENDING', '2026-10-29', NULL, 'Emergency transfusion request'),
+(10, 'REQ-710', 10, 'O+', 'Whole Blood', 2, 0, 'ROUTINE', 'PENDING', '2026-11-15', NULL, 'Routine hospital stock request');
+
+-- Additional Request Allocations (new request/unit combinations)
+INSERT INTO request_allocations (request_id, unit_id, allocated_by) VALUES
+(4, 6, 'Bivek sah'),
+(7, 10, 'Nitin Kumar');
+
+-- Additional Screening Logs
+INSERT INTO screening_logs
+(donor_code, donation_code, hemoglobin, bp, pulse, weight_kg, screening_result, notes)
+VALUES
+('DNR-1007', 'DON-507', 13.80, '120/80', 72, 58, 'APPROVED', 'All screening values recorded'),
+('DNR-1008', 'DON-508', 15.10, '118/78', 70, 74, 'APPROVED', 'Routine donor screening'),
+('DNR-1009', 'DON-509', 12.90, '116/76', 76, 55, 'APPROVED', 'Screening completed'),
+('DNR-1010', 'DON-510', 14.50, '122/80', 74, 68, 'APPROVED', 'Screening completed'),
+('DNR-1011', 'DON-511', 13.20, '120/82', 78, 62, 'APPROVED', 'Screening completed'),
+('DNR-1012', 'DON-512', 12.50, '110/70', 80, 59, 'PENDING', 'Awaiting review'),
+('DNR-1013', 'DON-513', 13.60, '118/80', 72, 61, 'APPROVED', 'Screening completed'),
+('DNR-1014', 'DON-514', 14.00, '124/82', 75, 76, 'PENDING', 'Awaiting review'),
+('DNR-1015', 'DON-515', 12.80, '116/78', 73, 57, 'APPROVED', 'Screening completed'),
+('DNR-1016', 'DON-516', 10.90, '108/68', 82, 64, 'DEFERRED', 'Hemoglobin below configured threshold');
+
+-- Additional Audit Logs
 INSERT INTO audit_logs (user_name, action, target_entity, details) VALUES
-('Bivek sah', 'CREATE', 'DONOR', 'Created donor DNR-1001 - Rahul'),
-('Nitin Kumar', 'ALLOCATE', 'REQUEST', 'Allocated unit UNT-901 to request REQ-701'),
-('Bivek sah', 'UPDATE', 'INVENTORY', 'Marked unit UNT-902 as EXPIRED');
+('bivek', 'INSERT', 'donors', 'Added donor DNR-1007'),
+('nitin', 'INSERT', 'donations', 'Recorded donation DON-507'),
+('bivek', 'UPDATE', 'blood_units', 'Updated status for UNT-906'),
+('nitin', 'INSERT', 'hospitals', 'Added hospital HSP-304'),
+('bivek', 'INSERT', 'blood_requests', 'Created request REQ-704'),
+('nitin', 'INSERT', 'screening_logs', 'Recorded screening for DNR-1007'),
+('bivek', 'UPDATE', 'blood_requests', 'Reviewed request REQ-705'),
+('nitin', 'INSERT', 'request_allocations', 'Allocated unit UNT-910 to request REQ-707'),
+('bivek', 'UPDATE', 'donors', 'Updated eligibility review for DNR-1016'),
+('nitin', 'SELECT', 'blood_units', 'Reviewed blood inventory');
+
+-- =========================================================================
+-- END OF ADDITIONAL SAMPLE DATA
+-- =========================================================================

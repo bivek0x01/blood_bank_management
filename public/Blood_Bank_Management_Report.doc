@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Blood Bank Management System - ESE Mini-Project Report</title>
+<style>
+  body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333333;
+    margin: 40px;
+    background-color: #ffffff;
+  }
+  h1, h2, h3, h4 {
+    color: #7A0016; /* Burgundy SIT color */
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  h1 { font-size: 26px; text-align: center; text-transform: uppercase; border-bottom: 2px solid #7A0016; padding-bottom: 10px; }
+  h2 { font-size: 18px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  h3 { font-size: 14px; }
+  p { margin-bottom: 12px; font-size: 12pt; text-align: justify; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 11pt;
+  }
+  th, td {
+    border: 1px solid #b0b0b0;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background-color: #7A0016;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f9f2f2;
+  }
+  pre, code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    font-size: 10pt;
+  }
+  pre {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-left: 4px solid #7A0016;
+    overflow-x: auto;
+  }
+  .cover-box {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 2px solid #7A0016;
+    background-color: #fdfbfb;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover-box">
+  <p style="font-size: 14pt; font-weight: bold; color: #555; margin-bottom: 5px;">SYMBIOSIS INSTITUTE OF TECHNOLOGY, PUNE</p>
+  <p style="font-size: 11pt; color: #666; margin-top: 0;">Department of Computer Science and Engineering | Batch 2025–29 (SY / Sem III)</p>
+  <h1 style="border: none; margin-top: 20px; margin-bottom: 10px;">BLOOD BANK MANAGEMENT SYSTEM</h1>
+  <p style="font-size: 13pt; font-weight: bold; color: #7A0016;">DCDS LAB ESE MINI-PROJECT REPORT</p>
+  <p style="font-size: 11pt; color: #444;">A Python and MySQL-driven enterprise application for blood bank operations, inventory tracking, and hospital request fulfillment.</p>
+</div>
+
+<h2>Academic Details</h2>
+<table>
+  <tr>
+    <th>Academic Detail</th>
+    <th>Information</th>
+  </tr>
+  <tr>
+    <td><strong>Institute</strong></td>
+    <td>Symbiosis Institute of Technology, Pune</td>
+  </tr>
+  <tr>
+    <td><strong>Department</strong></td>
+    <td>Computer Science and Engineering</td>
+  </tr>
+  <tr>
+    <td><strong>Course</strong></td>
+    <td>Database Concepts for Data Science Lab (DCDS Lab ESE)</td>
+  </tr>
+  <tr>
+    <td><strong>Batch & Semester</strong></td>
+    <td>2025–29 | SY / Semester III (Division: AIML-A)</td>
+  </tr>
+  <tr>
+    <td><strong>Team Member 1</strong></td>
+    <td><strong>Bivek Sah</strong> (PRN: 25070126052)</td>
+  </tr>
+  <tr>
+    <td><strong>Team Member 2</strong></td>
+    <td><strong>Alok Yadav</strong> (PRN: 25070126022)</td>
+  </tr>
+  <tr>
+    <td><strong>Team Member 3</strong></td>
+    <td><strong>Ayush Kumar Yadav</strong> (PRN: 25070126048)</td>
+  </tr>
+  <tr>
+    <td><strong>Submission Date</strong></td>
+    <td>October 2026</td>
+  </tr>
+</table>
+
+<div class="page-break"></div>
+
+<h2>1. Abstract and Project Overview</h2>
+<p>The <strong>Blood Bank Management System</strong> is a database-driven enterprise application designed to organize donor details, donation records, blood-unit stock, and hospital requests in a centralized platform. The system addresses the challenges of fragmented record-keeping by maintaining traceable donation and request records, monitoring blood stock eligibility, and highlighting inventory nearing expiry. Structured entities such as donors, hospitals, donations, blood units, requests, and allocations are stored in a normalized relational <strong>MySQL 8.0</strong> database.</p>
+<p>Python (Flask) connects the database layer with application workflows. SQL supports multi-table joins, filtering, grouping, and aggregate reporting; Python functions and classes manage input validation and business rules. The design emphasizes data integrity, transaction safety (ACID compliance), careful handling of personal information, and clear status transitions.</p>
+
+<h3>Project Objectives</h3>
+<ul>
+  <li>Maintain donor profiles and allow search by blood group and location, subject to consent and privacy rules.</li>
+  <li>Record donations and connect eligible donations to blood-stock records.</li>
+  <li>Track blood units by group, collection date, expiry date, and status.</li>
+  <li>Record hospital requests and track request fulfillment status using transactional safeguards.</li>
+  <li>Summarize stock by blood group and flag low stock or units nearing expiry.</li>
+  <li>Demonstrate Python functions, classes, validation, and database connectivity.</li>
+</ul>
+
+<h2>2. Problem Statement and Motivation</h2>
+<p>Blood banks coordinate several critical activities: registering donors, recording donations, checking eligibility, tracking collected units, and responding to urgent hospital blood requests. Managing these through disconnected spreadsheets or paper records introduces risks of stock discrepancies, inaccurate availability counts, and delayed emergency allocations.</p>
+
+<h3>Problems Addressed & System Response</h3>
+<table>
+  <tr>
+    <th>Problem</th>
+    <th>Possible Consequence</th>
+    <th>System Response</th>
+  </tr>
+  <tr>
+    <td><strong>Fragmented records</strong></td>
+    <td>Staff must search multiple records to answer routine questions.</td>
+    <td>Centralized dashboard, donor, donation, stock, and request views.</td>
+  </tr>
+  <tr>
+    <td><strong>Unclear availability</strong></td>
+    <td>Total stock numbers include unavailable or expired units.</td>
+    <td>Track unit status (<code>AVAILABLE</code>, <code>ISSUED</code>, <code>EXPIRED</code>, <code>RESERVED</code>) separately.</td>
+  </tr>
+  <tr>
+    <td><strong>Expiry exposure</strong></td>
+    <td>Units approach expiry without notification.</td>
+    <td>Calculate days remaining, flag near-expiry inventory.</td>
+  </tr>
+  <tr>
+    <td><strong>Urgent hospital request</strong></td>
+    <td>Blood group verification takes excessive time.</td>
+    <td>Filter eligible available stock instantly by blood group and status.</td>
+  </tr>
+  <tr>
+    <td><strong>Weak traceability</strong></td>
+    <td>Difficulty determining who updated a record.</td>
+    <td>Maintain audit logs capturing user actions and timestamps.</td>
+  </tr>
+  <tr>
+    <td><strong>Inconsistent data</strong></td>
+    <td>Invalid quantities or missing details corrupt reports.</td>
+    <td>Enforce strict input validation on both frontend and backend.</td>
+  </tr>
+</table>
+
+<h2>3. Relational Database Design: MySQL 8.0</h2>
+<p>The database <code>blood_bank_management</code> consists of normalized tables connected by foreign key constraints to eliminate data redundancy and ensure relational integrity.</p>
+
+<h3>Core Relational Tables</h3>
+<ol>
+  <li><strong><code>admin_users</code></strong>: Stores administrator credentials (e.g., admin <strong>Bivek sah</strong>) and role-based permissions.</li>
+  <li><strong><code>donors</code></strong>: Stores donor master records (Rahul, Saurav paudel, Muthmari, Alok yadav, Ayush karn).</li>
+  <li><strong><code>donations</code></strong>: Records donation events linked to donors and screening outcomes.</li>
+  <li><strong><code>blood_units</code></strong>: Tracks unit-level inventory, collection dates, and expiry dates.</li>
+  <li><strong><code>hospitals</code></strong>: Stores affiliated hospital details and emergency contacts.</li>
+  <li><strong><code>blood_requests</code></strong>: Records hospital blood demands, priority, and fulfillment status.</li>
+  <li><strong><code>request_allocations</code></strong>: Many-to-many mapping table linking issued units to specific hospital requests.</li>
+</ol>
+
+<h2>4. SQL Operations and Data Retrieval</h2>
+<p>The application utilizes advanced SQL queries including <code>JOIN</code>, <code>GROUP BY</code>, <code>COUNT</code>, <code>SUM</code>, and date filtering.</p>
+
+<h3>Stock Summary Query (GROUP BY)</h3>
+<pre>
+SELECT 
+    blood_group,
+    component_type,
+    COUNT(unit_id) AS available_units_count,
+    MIN(expiry_date) AS earliest_expiry_date
+FROM blood_units
+WHERE status = 'AVAILABLE' AND expiry_date >= CURDATE()
+GROUP BY blood_group, component_type
+ORDER BY blood_group;
+</pre>
+
+<h3>Multi-Table JOIN Query</h3>
+<pre>
+SELECT 
+    bu.unit_code,
+    bu.blood_group,
+    bu.component_type,
+    bu.expiry_date,
+    bu.status,
+    d.full_name AS donor_name,
+    d.phone AS donor_phone
+FROM blood_units bu
+JOIN donations don ON bu.donation_id = don.donation_id
+JOIN donors d ON don.donor_id = d.donor_id
+WHERE bu.status = 'AVAILABLE';
+</pre>
+
+<h2>5. Hospital Request and Transactional Allocation Workflow</h2>
+<p>When a hospital requests blood units, the application ensures that allocation occurs inside an <strong>ACID Transaction</strong> to prevent race conditions or duplicate unit issuances.</p>
+<ol>
+  <li>Verify requested blood group matches available units.</li>
+  <li>Check unit status is <code>AVAILABLE</code> and not expired.</li>
+  <li>Update unit status to <code>ISSUED</code>.</li>
+  <li>Insert mapping into <code>request_allocations</code>.</li>
+  <li>Increment <code>quantity_allocated</code> in <code>blood_requests</code> and update status (<code>FULFILLED</code> or <code>PARTIALLY_FULFILLED</code>).</li>
+  <li><strong>Commit</strong> transaction (or <strong>Rollback</strong> on any error).</li>
+</ol>
+
+<h2>6. Testing, Verification and Rubric Coverage</h2>
+<table>
+  <tr>
+    <th>Criterion</th>
+    <th>Marks</th>
+    <th>Evidence in Project</th>
+  </tr>
+  <tr>
+    <td><strong>Application design & functionality</strong></td>
+    <td>2</td>
+    <td>Fully functional React dashboard, donor, donation, inventory & request workflows.</td>
+  </tr>
+  <tr>
+    <td><strong>Python programming</strong></td>
+    <td>2</td>
+    <td>Modular Flask backend, service classes, validation, and exception handling.</td>
+  </tr>
+  <tr>
+    <td><strong>SQL integration</strong></td>
+    <td>2</td>
+    <td>Normalized MySQL tables, parameterized queries, joins, aggregates, and transactions.</td>
+  </tr>
+  <tr>
+    <td><strong>Advanced querying</strong></td>
+    <td>2</td>
+    <td>Blood-group stock grouping, near-expiry classification, and request fulfillment summaries.</td>
+  </tr>
+  <tr>
+    <td><strong>Code quality / documentation</strong></td>
+    <td>1</td>
+    <td>Clean architecture, well-commented code, and complete project report.</td>
+  </tr>
+  <tr>
+    <td><strong>Testing & validation</strong></td>
+    <td>1</td>
+    <td>Robust input validation and transactional rollback protection.</td>
+  </tr>
+</table>
+
+<h2>7. Conclusion</h2>
+<p>The <strong>Blood Bank Management System</strong> successfully demonstrates the integration of relational database concepts (MySQL 8.0), backend application orchestration (Python Flask), and modern web user interfaces (React & Tailwind CSS). Built by <strong>Bivek Sah</strong>, <strong>Alok Yadav</strong>, and <strong>Ayush Kumar Yadav</strong>, the project fulfills all academic requirements of the Symbiosis Institute of Technology DCDS Lab ESE Mini-Project.</p>
+
+</body>
+</html>

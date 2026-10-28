@@ -18,7 +18,17 @@ const INITIAL_DONORS = [
   { donor_id: 3, donor_code: 'DNR-1003', full_name: 'Muthmari', age: 28, gender: 'Male', blood_group: 'B-', phone: '+919765034567', email: 'muthmari@example.com', city: 'Mumbai', address: 'Andheri West, Mumbai - 400053', last_donation_date: '2025-10-10', consent_for_contact: true, is_eligible: true },
   { donor_id: 4, donor_code: 'DNR-1004', full_name: 'Alok yadav', age: 27, gender: 'Male', blood_group: 'AB+', phone: '+919921045678', email: 'alok.y@example.com', city: 'Pune', address: 'Viman Nagar, Pune - 411014', last_donation_date: '2026-02-01', consent_for_contact: true, is_eligible: true },
   { donor_id: 5, donor_code: 'DNR-1005', full_name: 'Ayush karn', age: 24, gender: 'Male', blood_group: 'O-', phone: '+919890056789', email: 'ayush.k@example.com', city: 'Pune', address: 'Baner, Pune - 411045', last_donation_date: '2025-08-15', consent_for_contact: true, is_eligible: true },
-  { donor_id: 6, donor_code: 'DNR-1006', full_name: 'Rahul Sharma', age: 29, gender: 'Male', blood_group: 'B+', phone: '+919823067890', email: 'rahul.s@example.com', city: 'Pune', address: 'Hadapsar, Pune - 411028', last_donation_date: null, consent_for_contact: true, is_eligible: false }
+  { donor_id: 6, donor_code: 'DNR-1006', full_name: 'Rahul Sharma', age: 29, gender: 'Male', blood_group: 'B+', phone: '+919823067890', email: 'rahul.s@example.com', city: 'Pune', address: 'Hadapsar, Pune - 411028', last_donation_date: null, consent_for_contact: true, is_eligible: false },
+  { donor_id: 7, donor_code: 'DNR-1007', full_name: 'Anjali Patil', age: 23, gender: 'Female', blood_group: 'A+', phone: '+919876100007', email: 'anjali.patil@example.com', city: 'Pune', address: 'Aundh, Pune - 411007', last_donation_date: '2026-05-10', consent_for_contact: true, is_eligible: true },
+  { donor_id: 8, donor_code: 'DNR-1008', full_name: 'Rohan Deshmukh', age: 31, gender: 'Male', blood_group: 'O+', phone: '+919876100008', email: 'rohan.d@example.com', city: 'Pune', address: 'Wakad, Pune - 411057', last_donation_date: '2026-04-18', consent_for_contact: true, is_eligible: true },
+  { donor_id: 9, donor_code: 'DNR-1009', full_name: 'Sneha Joshi', age: 22, gender: 'Female', blood_group: 'B+', phone: '+919876100009', email: 'sneha.j@example.com', city: 'Mumbai', address: 'Powai, Mumbai - 400076', last_donation_date: null, consent_for_contact: true, is_eligible: true },
+  { donor_id: 10, donor_code: 'DNR-1010', full_name: 'Vikram Thapa', age: 27, gender: 'Male', blood_group: 'O-', phone: '+919876100010', email: 'vikram.t@example.com', city: 'Pune', address: 'Kharadi, Pune - 411014', last_donation_date: '2026-03-21', consent_for_contact: true, is_eligible: true },
+  { donor_id: 11, donor_code: 'DNR-1011', full_name: 'Meera Kulkarni', age: 35, gender: 'Female', blood_group: 'AB+', phone: '+919876100011', email: 'meera.k@example.com', city: 'Nashik', address: 'College Road, Nashik - 422005', last_donation_date: '2025-12-12', consent_for_contact: true, is_eligible: true },
+  { donor_id: 12, donor_code: 'DNR-1012', full_name: 'Arjun Shrestha', age: 29, gender: 'Male', blood_group: 'A-', phone: '+919876100012', email: 'arjun.s@example.com', city: 'Pune', address: 'Pimple Saudagar, Pune - 411027', last_donation_date: null, consent_for_contact: true, is_eligible: true },
+  { donor_id: 13, donor_code: 'DNR-1013', full_name: 'Pooja More', age: 26, gender: 'Female', blood_group: 'B-', phone: '+919876100013', email: 'pooja.more@example.com', city: 'Mumbai', address: 'Borivali, Mumbai - 400092', last_donation_date: '2026-02-14', consent_for_contact: true, is_eligible: true },
+  { donor_id: 14, donor_code: 'DNR-1014', full_name: 'Kunal Shah', age: 40, gender: 'Male', blood_group: 'AB-', phone: '+919876100014', email: 'kunal.shah@example.com', city: 'Pune', address: 'Kondhwa, Pune - 411048', last_donation_date: null, consent_for_contact: true, is_eligible: true },
+  { donor_id: 15, donor_code: 'DNR-1015', full_name: 'Divya Nair', age: 24, gender: 'Female', blood_group: 'O+', phone: '+919876100015', email: 'divya.nair@example.com', city: 'Nashik', address: 'Gangapur Road, Nashik - 422013', last_donation_date: '2026-06-05', consent_for_contact: true, is_eligible: true },
+  { donor_id: 16, donor_code: 'DNR-1016', full_name: 'Sanjay Yadav', age: 33, gender: 'Male', blood_group: 'A+', phone: '+919876100016', email: 'sanjay.y@example.com', city: 'Pune', address: 'Dhanori, Pune - 411015', last_donation_date: null, consent_for_contact: true, is_eligible: false }
 ];
 
 const INITIAL_DONATIONS = [
@@ -27,27 +37,61 @@ const INITIAL_DONATIONS = [
   { donation_id: 3, donation_code: 'DON-503', donor_id: 3, donor_name: 'Muthmari', blood_group: 'B-', donation_date: '2025-10-10', quantity_ml: 400, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'Good collection, pulse and BP normal' },
   { donation_id: 4, donation_code: 'DON-504', donor_id: 4, donor_name: 'Alok yadav', blood_group: 'AB+', donation_date: '2026-02-01', quantity_ml: 350, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Bivek sah', notes: 'First time donor camp at SIT Pune' },
   { donation_id: 5, donation_code: 'DON-505', donor_id: 5, donor_name: 'Ayush karn', blood_group: 'O-', donation_date: '2025-08-15', quantity_ml: 450, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'Rare O- universal donor' },
-  { donation_id: 6, donation_code: 'DON-506', donor_id: 6, donor_name: 'Rahul Sharma', blood_group: 'B+', donation_date: '2026-03-01', quantity_ml: 350, screening_status: 'DEFERRED', deferral_reason: 'Low Hemoglobin (11.0 g/dL)', collected_by: 'Bivek sah', notes: 'Deferred for 3 months with iron supplements advised' }
+  { donation_id: 6, donation_code: 'DON-506', donor_id: 6, donor_name: 'Rahul Sharma', blood_group: 'B+', donation_date: '2026-03-01', quantity_ml: 350, screening_status: 'DEFERRED', deferral_reason: 'Low Hemoglobin (11.0 g/dL)', collected_by: 'Bivek sah', notes: 'Deferred for 3 months with iron supplements advised' },
+  { donation_id: 7, donation_code: 'DON-507', donor_id: 7, donor_name: 'Anjali Patil', blood_group: 'A+', donation_date: '2026-05-10', quantity_ml: 350, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'Routine donation; screening approved' },
+  { donation_id: 8, donation_code: 'DON-508', donor_id: 8, donor_name: 'Rohan Deshmukh', blood_group: 'O+', donation_date: '2026-04-18', quantity_ml: 400, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Bivek sah', notes: 'Donor vitals recorded as normal' },
+  { donation_id: 9, donation_code: 'DON-509', donor_id: 9, donor_name: 'Sneha Joshi', blood_group: 'B+', donation_date: '2026-10-02', quantity_ml: 350, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'First recorded donation' },
+  { donation_id: 10, donation_code: 'DON-510', donor_id: 10, donor_name: 'Vikram Thapa', blood_group: 'O-', donation_date: '2026-03-21', quantity_ml: 350, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Bivek sah', notes: 'O-negative donation' },
+  { donation_id: 11, donation_code: 'DON-511', donor_id: 11, donor_name: 'Meera Kulkarni', blood_group: 'AB+', donation_date: '2025-12-12', quantity_ml: 450, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'Donation completed successfully' },
+  { donation_id: 12, donation_code: 'DON-512', donor_id: 12, donor_name: 'Arjun Shrestha', blood_group: 'A-', donation_date: '2026-10-12', quantity_ml: 350, screening_status: 'PENDING', deferral_reason: null, collected_by: 'Bivek sah', notes: 'Awaiting final screening review' },
+  { donation_id: 13, donation_code: 'DON-513', donor_id: 13, donor_name: 'Pooja More', blood_group: 'B-', donation_date: '2026-02-14', quantity_ml: 350, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'Donation approved after screening' },
+  { donation_id: 14, donation_code: 'DON-514', donor_id: 14, donor_name: 'Kunal Shah', blood_group: 'AB-', donation_date: '2026-10-20', quantity_ml: 350, screening_status: 'PENDING', deferral_reason: null, collected_by: 'Bivek sah', notes: 'Screening review pending' },
+  { donation_id: 15, donation_code: 'DON-515', donor_id: 15, donor_name: 'Divya Nair', blood_group: 'O+', donation_date: '2026-06-05', quantity_ml: 400, screening_status: 'APPROVED', deferral_reason: null, collected_by: 'Nitin Kumar', notes: 'Donation completed successfully' },
+  { donation_id: 16, donation_code: 'DON-516', donor_id: 16, donor_name: 'Sanjay Yadav', blood_group: 'A+', donation_date: '2026-10-22', quantity_ml: 350, screening_status: 'DEFERRED', deferral_reason: 'Eligibility review required', collected_by: 'Bivek sah', notes: 'Donation deferred after preliminary screening' }
 ];
 
 const INITIAL_INVENTORY = [
-  { unit_id: 1, unit_code: 'UNT-901', donor_name: 'Rahul', blood_group: 'O+', component_type: 'Packed RBC', collection_date: '2026-01-15', expiry_date: '2026-11-30', status: 'AVAILABLE', storage_location: 'Cold Storage Unit A-1' },
+  { unit_id: 1, unit_code: 'UNT-901', donor_name: 'Rahul', blood_group: 'O+', component_type: 'Packed RBC', collection_date: '2026-01-15', expiry_date: '2026-11-15', status: 'AVAILABLE', storage_location: 'Cold Storage Unit A-1' },
   { unit_id: 2, unit_code: 'UNT-902', donor_name: 'Saurav paudel', blood_group: 'A+', component_type: 'Whole Blood', collection_date: '2025-11-20', expiry_date: '2025-12-20', status: 'EXPIRED', storage_location: 'Disposal Box B' },
   { unit_id: 3, unit_code: 'UNT-903', donor_name: 'Muthmari', blood_group: 'B-', component_type: 'Plasma', collection_date: '2025-10-10', expiry_date: '2026-12-10', status: 'AVAILABLE', storage_location: 'Deep Freezer F-3' },
   { unit_id: 4, unit_code: 'UNT-904', donor_name: 'Alok yadav', blood_group: 'AB+', component_type: 'Platelets', collection_date: '2026-02-01', expiry_date: '2026-11-10', status: 'ISSUED', storage_location: 'Platelet Agitator P-2' },
-  { unit_id: 5, unit_code: 'UNT-905', donor_name: 'Ayush karn', blood_group: 'O-', component_type: 'Packed RBC', collection_date: '2025-08-15', expiry_date: '2025-11-15', status: 'EXPIRED', storage_location: 'Disposal Box B' }
+  { unit_id: 5, unit_code: 'UNT-905', donor_name: 'Ayush karn', blood_group: 'O-', component_type: 'Packed RBC', collection_date: '2025-08-15', expiry_date: '2025-11-15', status: 'EXPIRED', storage_location: 'Disposal Box B' },
+  { unit_id: 6, unit_code: 'UNT-906', donor_name: 'Anjali Patil', blood_group: 'A+', component_type: 'Packed RBC', collection_date: '2026-05-10', expiry_date: '2026-11-06', status: 'AVAILABLE', storage_location: 'Cold Storage Unit A-2' },
+  { unit_id: 7, unit_code: 'UNT-907', donor_name: 'Rohan Deshmukh', blood_group: 'O+', component_type: 'Whole Blood', collection_date: '2026-04-18', expiry_date: '2026-05-18', status: 'EXPIRED', storage_location: 'Disposal Box C' },
+  { unit_id: 8, unit_code: 'UNT-908', donor_name: 'Sneha Joshi', blood_group: 'B+', component_type: 'Platelets', collection_date: '2026-10-02', expiry_date: '2026-10-09', status: 'EXPIRED', storage_location: 'Disposal Box C' },
+  { unit_id: 9, unit_code: 'UNT-909', donor_name: 'Vikram Thapa', blood_group: 'O-', component_type: 'Packed RBC', collection_date: '2026-03-21', expiry_date: '2026-09-18', status: 'EXPIRED', storage_location: 'Disposal Box B' },
+  { unit_id: 10, unit_code: 'UNT-910', donor_name: 'Meera Kulkarni', blood_group: 'AB+', component_type: 'Plasma', collection_date: '2025-12-12', expiry_date: '2027-12-12', status: 'AVAILABLE', storage_location: 'Deep Freezer F-4' },
+  { unit_id: 11, unit_code: 'UNT-911', donor_name: 'Arjun Shrestha', blood_group: 'A-', component_type: 'Whole Blood', collection_date: '2026-10-12', expiry_date: '2026-11-11', status: 'QUARANTINED', storage_location: 'Quarantine Refrigerator Q-1' },
+  { unit_id: 12, unit_code: 'UNT-912', donor_name: 'Pooja More', blood_group: 'B-', component_type: 'Packed RBC', collection_date: '2026-02-14', expiry_date: '2026-08-14', status: 'EXPIRED', storage_location: 'Disposal Box D' },
+  { unit_id: 13, unit_code: 'UNT-913', donor_name: 'Kunal Shah', blood_group: 'AB-', component_type: 'Plasma', collection_date: '2026-10-20', expiry_date: '2028-10-20', status: 'QUARANTINED', storage_location: 'Deep Freezer F-5' },
+  { unit_id: 14, unit_code: 'UNT-914', donor_name: 'Divya Nair', blood_group: 'O+', component_type: 'Platelets', collection_date: '2026-06-05', expiry_date: '2026-06-12', status: 'EXPIRED', storage_location: 'Disposal Box C' },
+  { unit_id: 15, unit_code: 'UNT-915', donor_name: 'Sanjay Yadav', blood_group: 'A+', component_type: 'Whole Blood', collection_date: '2026-10-22', expiry_date: '2026-11-21', status: 'QUARANTINED', storage_location: 'Quarantine Refrigerator Q-2' }
 ];
 
 const INITIAL_HOSPITALS = [
   { hospital_id: 1, hospital_code: 'HSP-301', hospital_name: 'Ruby Hall Clinic', contact_person: 'Dr. Anand Deshpande', phone: '+912026163399', email: 'bloodbank@rubyhall.com', city: 'Pune', address: 'Sasoon Road, Pune - 411001' },
   { hospital_id: 2, hospital_code: 'HSP-302', hospital_name: 'Jehangir Hospital', contact_person: 'Dr. Meena Swaminathan', phone: '+912066811000', email: 'transfusion@jehangirhospital.com', city: 'Pune', address: '32 Sassoon Road, Pune - 411001' },
-  { hospital_id: 3, hospital_code: 'HSP-303', hospital_name: 'Sassoon General Hospital', contact_person: 'Dr. Vijay Jadhav', phone: '+912026128000', email: 'bloodbank@sassoonhospital.org', city: 'Pune', address: 'Near Pune Railway Station, Pune - 411001' }
+  { hospital_id: 3, hospital_code: 'HSP-303', hospital_name: 'Sassoon General Hospital', contact_person: 'Dr. Vijay Jadhav', phone: '+912026128000', email: 'bloodbank@sassoonhospital.org', city: 'Pune', address: 'Near Pune Railway Station, Pune - 411001' },
+  { hospital_id: 4, hospital_code: 'HSP-304', hospital_name: 'Deenanath Mangeshkar Hospital', contact_person: 'Dr. Kavita Rao', phone: '+912040100100', email: 'bloodbank@example.com', city: 'Pune', address: 'Erandwane, Pune - 411004' },
+  { hospital_id: 5, hospital_code: 'HSP-305', hospital_name: 'Sahyadri Hospital', contact_person: 'Dr. Amit Kulkarni', phone: '+912067200200', email: 'transfusion@example.com', city: 'Pune', address: 'Deccan Gymkhana, Pune - 411004' },
+  { hospital_id: 6, hospital_code: 'HSP-306', hospital_name: 'KEM Hospital', contact_person: 'Dr. R. Desai', phone: '+912224100300', email: 'blooddesk@example.com', city: 'Mumbai', address: 'Parel, Mumbai - 400012' },
+  { hospital_id: 7, hospital_code: 'HSP-307', hospital_name: 'Nanavati Max Hospital', contact_person: 'Dr. Neha Shah', phone: '+912226200400', email: 'bloodservices@example.com', city: 'Mumbai', address: 'Vile Parle, Mumbai - 400056' },
+  { hospital_id: 8, hospital_code: 'HSP-308', hospital_name: 'Civil Hospital Nashik', contact_person: 'Dr. S. Patil', phone: '+912532500500', email: 'bloodbank.nashik@example.com', city: 'Nashik', address: 'Trimbak Road, Nashik - 422002' },
+  { hospital_id: 9, hospital_code: 'HSP-309', hospital_name: 'Aditya Birla Memorial Hospital', contact_person: 'Dr. P. Nair', phone: '+912067700600', email: 'transfusion.pune@example.com', city: 'Pune', address: 'Thergaon, Pune - 411033' },
+  { hospital_id: 10, hospital_code: 'HSP-310', hospital_name: 'Jupiter Hospital', contact_person: 'Dr. M. Joshi', phone: '+912267300700', email: 'blooddesk.thane@example.com', city: 'Thane', address: 'Eastern Express Highway, Thane - 400601' }
 ];
 
 const INITIAL_REQUESTS = [
   { request_id: 1, request_code: 'REQ-701', hospital_name: 'Ruby Hall Clinic', blood_group: 'O+', component_type: 'Packed RBC', quantity_requested: 3, quantity_allocated: 1, priority: 'URGENT', request_status: 'PARTIALLY_FULFILLED', required_by_date: '2026-11-10', notes: 'Required for emergency trauma surgery' },
   { request_id: 2, request_code: 'REQ-702', hospital_name: 'Jehangir Hospital', blood_group: 'B-', component_type: 'Plasma', quantity_requested: 2, quantity_allocated: 1, priority: 'EMERGENCY', request_status: 'PARTIALLY_FULFILLED', required_by_date: '2026-11-05', notes: 'Required for burn unit patient' },
-  { request_id: 3, request_code: 'REQ-703', hospital_name: 'Sassoon General Hospital', blood_group: 'AB+', component_type: 'Platelets', quantity_requested: 2, quantity_allocated: 1, priority: 'ROUTINE', request_status: 'PARTIALLY_FULFILLED', required_by_date: '2026-11-12', notes: 'Dengue patient platelet transfusion' }
+  { request_id: 3, request_code: 'REQ-703', hospital_name: 'Sassoon General Hospital', blood_group: 'AB+', component_type: 'Platelets', quantity_requested: 2, quantity_allocated: 1, priority: 'ROUTINE', request_status: 'PARTIALLY_FULFILLED', required_by_date: '2026-11-12', notes: 'Dengue patient platelet transfusion' },
+  { request_id: 4, request_code: 'REQ-704', hospital_name: 'Deenanath Mangeshkar Hospital', blood_group: 'A+', component_type: 'Packed RBC', quantity_requested: 2, quantity_allocated: 1, priority: 'URGENT', request_status: 'PARTIALLY_FULFILLED', required_by_date: '2026-11-02', notes: 'Surgery support request' },
+  { request_id: 5, request_code: 'REQ-705', hospital_name: 'Sahyadri Hospital', blood_group: 'O-', component_type: 'Packed RBC', quantity_requested: 1, quantity_allocated: 0, priority: 'EMERGENCY', request_status: 'PENDING', required_by_date: '2026-10-30', notes: 'Emergency request awaiting allocation' },
+  { request_id: 6, request_code: 'REQ-706', hospital_name: 'KEM Hospital', blood_group: 'B+', component_type: 'Platelets', quantity_requested: 4, quantity_allocated: 0, priority: 'URGENT', request_status: 'PENDING', required_by_date: '2026-11-01', notes: 'Platelet support requested' },
+  { request_id: 7, request_code: 'REQ-707', hospital_name: 'Nanavati Max Hospital', blood_group: 'AB+', component_type: 'Plasma', quantity_requested: 2, quantity_allocated: 1, priority: 'ROUTINE', request_status: 'PARTIALLY_FULFILLED', required_by_date: '2026-11-08', notes: 'Plasma request' },
+  { request_id: 8, request_code: 'REQ-708', hospital_name: 'Civil Hospital Nashik', blood_group: 'A-', component_type: 'Whole Blood', quantity_requested: 2, quantity_allocated: 0, priority: 'URGENT', request_status: 'PENDING', required_by_date: '2026-11-03', notes: 'Awaiting compatible units' },
+  { request_id: 9, request_code: 'REQ-709', hospital_name: 'Aditya Birla Memorial Hospital', blood_group: 'B-', component_type: 'Packed RBC', quantity_requested: 3, quantity_allocated: 0, priority: 'EMERGENCY', request_status: 'PENDING', required_by_date: '2026-10-29', notes: 'Emergency transfusion request' },
+  { request_id: 10, request_code: 'REQ-710', hospital_name: 'Jupiter Hospital', blood_group: 'O+', component_type: 'Whole Blood', quantity_requested: 2, quantity_allocated: 0, priority: 'ROUTINE', request_status: 'PENDING', required_by_date: '2026-11-15', notes: 'Routine hospital stock request' }
 ];
 
 const MONGODB_SCREENING_LOGS = [
@@ -69,6 +113,47 @@ export default function App() {
   const [inventory, setInventory] = useState(INITIAL_INVENTORY);
   const [hospitals, setHospitals] = useState(INITIAL_HOSPITALS);
   const [requests, setRequests] = useState(INITIAL_REQUESTS);
+  const [isDbConnected, setIsDbConnected] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loginUser, setLoginUser] = useState('admin');
+  const [loginPass, setLoginPass] = useState('admin123');
+  const [currentUser, setCurrentUser] = useState({ name: 'Bivek sah', role: 'SUPER_ADMIN' });
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (loginPass === 'admin123') {
+      if (loginUser.toLowerCase() === 'nitin' || loginUser.toLowerCase() === 'staff') {
+        setCurrentUser({ name: 'Nitin Kumar', role: 'STAFF' });
+      } else {
+        setCurrentUser({ name: 'Bivek sah', role: 'SUPER_ADMIN' });
+      }
+      setIsAuthenticated(true);
+      showNotification(`Welcome back, ${loginUser.toLowerCase() === 'nitin' ? 'Nitin Kumar' : 'Bivek sah'}!`);
+    } else {
+      showNotification('Invalid password! Please use admin123', 'error');
+    }
+  };
+
+  const API_BASE = (import.meta as any).env.VITE_API_URL || 'http://localhost:5000';
+
+  React.useEffect(() => {
+    fetch(`${API_BASE}/api/health`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'healthy') {
+          setIsDbConnected(true);
+          // Fetch real live data from MySQL via Python Flask backend
+          fetch(`${API_BASE}/api/donors`).then(r => r.json()).then(setDonors).catch(() => {});
+          fetch(`${API_BASE}/api/donations`).then(r => r.json()).then(setDonations).catch(() => {});
+          fetch(`${API_BASE}/api/inventory`).then(r => r.json()).then(setInventory).catch(() => {});
+          fetch(`${API_BASE}/api/hospitals`).then(r => r.json()).then(setHospitals).catch(() => {});
+          fetch(`${API_BASE}/api/requests`).then(r => r.json()).then(setRequests).catch(() => {});
+        }
+      })
+      .catch(() => {
+        setIsDbConnected(false);
+      });
+  }, []);
   
   // Modal / Form States
   const [showAddDonorModal, setShowAddDonorModal] = useState(false);
@@ -244,6 +329,55 @@ export default function App() {
   const pendingRequests = requests.filter(r => r.request_status === 'PENDING' || r.request_status === 'PARTIALLY_FULFILLED').length;
   const nearExpiryUnits = inventory.filter(u => u.status === 'AVAILABLE').length; // sample threshold
 
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-950 via-red-900 to-stone-900 flex items-center justify-center p-4 font-sans">
+        <div className="max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-8 border border-white/20 space-y-6">
+          <div className="text-center space-y-2">
+            <div className="w-16 h-16 bg-red-700 rounded-2xl mx-auto flex items-center justify-center shadow-lg shadow-red-700/40 text-white mb-4">
+              <Droplet className="w-9 h-9 fill-white" />
+            </div>
+            <h1 className="text-2xl font-extrabold text-stone-900 tracking-tight">Blood Bank Management</h1>
+            <p className="text-xs font-semibold text-red-800 uppercase tracking-wider">Symbiosis Institute of Technology, Pune</p>
+            <p className="text-xs text-stone-500">DCDS Lab ESE Mini-Project Portal</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-xs font-bold text-stone-700 uppercase mb-1">Username / Admin ID</label>
+              <input
+                type="text"
+                required
+                value={loginUser}
+                onChange={(e) => setLoginUser(e.target.value)}
+                className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 font-medium"
+                placeholder="admin or nitin"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-stone-700 uppercase mb-1">Password</label>
+              <input
+                type="password"
+                required
+                value={loginPass}
+                onChange={(e) => setLoginPass(e.target.value)}
+                className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-red-600 font-medium"
+                placeholder="admin123"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3.5 bg-red-700 hover:bg-red-800 text-white font-bold rounded-2xl shadow-lg shadow-red-700/30 transition-all text-sm tracking-wide"
+            >
+              Secure Login (admin123)
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 flex font-sans">
       
@@ -292,8 +426,9 @@ export default function App() {
         <div className="p-4 border-t border-red-900 bg-red-950/80 text-xs text-red-300 flex items-center justify-between">
           <div>
             <p className="font-semibold text-stone-200">MySQL 8.0 Database</p>
-            <p className="text-emerald-400 flex items-center gap-1 mt-0.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Connected
+            <p className={`${isDbConnected ? 'text-emerald-400' : 'text-amber-400'} flex items-center gap-1 mt-0.5 font-medium`}>
+              <span className={`w-2 h-2 rounded-full ${isDbConnected ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+              {isDbConnected ? 'Live MySQL Connected' : 'Demo / Standalone Mode'}
             </p>
           </div>
           <span className="bg-red-900 px-2 py-1 rounded text-stone-200 font-mono">ESE v2.4</span>
@@ -315,8 +450,14 @@ export default function App() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 bg-red-50 border border-red-200 px-3 py-1.5 rounded-full text-xs font-semibold text-red-800">
               <UserCheck className="w-4 h-4 text-red-700" />
-              <span>Bivek sah (Admin)</span>
+              <span>{currentUser.name} ({currentUser.role})</span>
             </div>
+            <button
+              onClick={() => setIsAuthenticated(false)}
+              className="px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-semibold transition-all"
+            >
+              Logout
+            </button>
           </div>
         </header>
 
